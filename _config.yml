@@ -15,8 +15,8 @@ theme                  : "minimal-mistakes-jekyll"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "en-US"
-title                    : "Hello"
+locale                   : "ko-KR"
+title                    : "First"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Song min ho"
