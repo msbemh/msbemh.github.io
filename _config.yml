@@ -153,6 +153,7 @@ footer:
 include:
   - .htaccess
   - _pages
+  - Gemfile
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
