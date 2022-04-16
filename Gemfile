@@ -9,3 +9,4 @@ gem "jekyll-feed"
 gem "jekyll-include-cache"
 
 gem "minimal-mistakes-jekyll"
+gem "jekyll-theme-primer"
