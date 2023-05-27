@@ -1,9 +1,23 @@
 # main links
-main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
+# main:
+#   - title: "PHP"
+#     children:
+#       - title : "PHP 디버그 (xdebug)"
+#         url : https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+
+
+docs:
+  - title: PHP
+    children:
+      - title: "PHP Remote 디버그 (xdebug)"
+        url: /php-xdebug/
+
+      - title: "test"
+        url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  - title: "Android"
+    children:
+      - title: "앱스토어 배포"
+        url: /php-xdebug/
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"
