@@ -173,21 +173,6 @@ xdebug.remote_port = 9000
 디버깅이 필요한 경우에만 디버깅을 할 수 있습니다. 이를 통해 디버깅을 위한 오버헤드를 줄일 수 있습니다.
 {: .notice--info}
 
-+ 2개의 php.ini 파일에 code 추가
-
-```ini
-{% raw %}[XDEBUG]
-zend_extension = xdebug
-
-xdebug.mode = debug
-xdebug.start_with_request = yes{% endraw %}
-```
-
-**<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**   
-**start_with_request** : 웹 서버가 클라이언트의 요청을 받을 때마다 Xdebug가 자동으로 활성화됩니다. 
-디버깅이 필요한 경우에만 디버깅을 할 수 있습니다. 이를 통해 디버깅을 위한 오버헤드를 줄일 수 있습니다.
-{: .notice--info}
-
 + PHP 재시작 (서버 재시작)
 
 ```
