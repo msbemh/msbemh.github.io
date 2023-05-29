@@ -11,13 +11,14 @@ docs:
     children:
       - title: "PHP Remote 디버그 (xdebug)"
         url: /php-xdebug/
-
-      - title: "test"
+      - title: "quick-start-guide"
         url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+      - title: "test"
+        url: /test/
   - title: "Android"
     children:
       - title: "앱스토어 배포"
-        url: /php-xdebug/
+        url: /android-release/
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"
