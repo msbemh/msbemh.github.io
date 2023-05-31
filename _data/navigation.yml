@@ -11,11 +11,31 @@ docs:
     children:
       - title: "PHP Remote 디버그 (xdebug)"
         url: /php-xdebug/
+      - title: "PHP 수동 설치(linux)"
+        url: /linux-php-install/
      
   - title: "Android"
     children:
-      - title: "앱스토어 배포"
+      - title: "안드로이드 PlayStore 배포"
         url: /android-release/
+  - title: "OS"
+    children:
+      - title: "wsl"
+        url: /wsl/
+  - title: "리눅스"
+    children:
+      - title: "아파치 수동 설치"
+        url: /apache-manual-install/
+      - title: "리눅스 사용법 및 명령어"
+        url: /ubuntu-command/
+  - title: "DB"
+    children:
+      - title: "MySQL 수동설치"
+        url: /mysql-manual-install/
+  - title: "Glossary"
+    children:
+      - title: "용어 정리1"
+        url: /word1/
   - title: "TEST"
     children:
       - title: "quick-start-guide"
