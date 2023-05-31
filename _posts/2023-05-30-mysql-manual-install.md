@@ -172,6 +172,31 @@ make install
 
 ---
 
+**MYSQL 사용자 추가**    
+
+사용자 그룹 및 사용자 추가
+
+```s
+groupadd mysql
+useradd -r -g mysql -s /bin/false mysql
+```
+
+`useradd [OPTIONS] USERNAME`   
+
+**<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**   
+-r : system account   
+-g : 그룹 지정   
+-s: user의 로그인 shell   
+/bin/false : 로 해당 user로 로그인하는 것을 막는다.   
+{: .notice--info}   
+
+생성된 사용자 확인    
+```
+cat /etc/passwd 
+```
+
+---
+
 **MySQL 설정 및 실행**
 
 ```s
@@ -190,46 +215,133 @@ chown mysql:mysql mysql-files
 chmod 750 mysql-files
 ```
 
+MySQL 데이터베이스 서버를 초기화
 ```s
 bin/mysqld --initialize --user=mysql
 ```
-
+**<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**   
+--initialize : 데이터베이스 디렉토리를 초기화   
+--user=mysql : MySQL 서버 프로세스가 mysql 사용자로 실행되도록 지정
+{: .notice--info}
+   
 ```s
 bin/mysql_ssl_rsa_setup
 ```
+**<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**   
+MySQL 서버와 클라이언트 간의 통신이 암호화되고 보안이 강화됩니다.    
+{: .notice--info}
 
-```s
-bin/mysqld_safe --user=mysql &
+MySQL 서버 실행   
+`sudo /etc/init.d/mysqld start`    
+`sudo /etc/init.d/mysqld status`    
+`sudo /etc/init.d/mysqld restart`  
+
+---
+
+**MYSQL 서버 실행 중인지 확인**   
+
 ```
+ps -ef | grep mysqld
+```
+
+---
+
+**MYSQL 서버 실행이 안될때**    
+`/usr/local/mysql/data` 경로에서 `*****.err` 파일을 봐보자.   
+이곳에서 로그가 `mysqld.sock`을 읽다가 중단 되는 느낌이였음.  
+MYSQL이 실행 될때 생성 되는 `mysql.sock`이 현재 봐라보고 있는 곳과 다른곳에서 생성 되고 있었음.    
+
+CMake 설정에 `-DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock` 로 했기 때문에    
+`mysql.sock`이 `/usr/local/mysql` 에 생성이 됨. (못찾아서 헤맸음 😂)  
+
+MYSQL 설정파일 `/etc/mysql/conf.d/mysql.cnf` 에서
+`socket=/usr/local/mysql/mysql.sock` 로 socket 경로를 바꿔주자   
+
+그럼 이제 잘 실행이 될거다 👍
+
+---   
+
+**사용자 패스워드 변경**   
+`mysql -u root -p` 로 로그인   
+처음 설치 했을 때 임시 비밀번호를 이용한다.
+
+`alter user 'root'@'localhost' identified by '원하는 비밀번호';` 로 비밀번호 변경   
+
+---
+
+**부팅 시 자동으로 실행 설정**   
 
 ```s
 cp support-files/mysql.server /etc/init.d/mysql.server
 ```
-
-**<i class="fa fa-info-circle" aria-hidden="true"></i> MySQL 실행 명령어 정보**   
-```s
-bin/mysqld --initialize --user=song  
-MySQL 데이터베이스 서버를 초기화하는 명령어입니다.     
---initialize 옵션은 데이터베이스 디렉토리를 초기화하고     
---user=mysql 옵션은 MySQL 서버 프로세스가 mysql 사용자로 실행되도록 지정합니다.     
-        
-bin/mysql_ssl_rsa_setup     
-MySQL 데이터베이스에서 SSL/TLS 인증서를 생성하는 스크립트입니다.      
-이 스크립트는 OpenSSL을 사용하여 RSA 키 쌍과 X.509 인증서를 생성하고,      
-MySQL 서버에 필요한 파일을 생성합니다.      
-이를 통해 MySQL 서버와 클라이언트 간의 통신이 암호화되고 보안이 강화됩니다.     
-        
-bin/mysqld_safe --user=song &     
-MySQL 서버 실행     
-mysql 사용자로 MySQL 서버를 실행합니다.     
-&는 해당 명령어를 백그라운드에서 실행하도록 합니다.     
-   
-cp support-files/mysql.server /etc/init.d/mysql.server   
+**<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**   
 해당 명령어는 support-files 디렉토리 안에 위치한 mysql.server 파일을 
 /etc/init.d/ 디렉토리로 복사하는 것을 의미합니다.    
 이 명령어는 MySQL 데이터베이스 서버를 설치한 후에 서버를 실행하기 위해 사용됩니다.   
 /etc/init.d/ 디렉토리에 위치한 스크립트 파일은 시스템 부팅 시 자동으로 실행되는데,    
-이 경우 /etc/init.d/mysql.server 파일은 MySQL 서버를 자동으로 시작하거나 중지하는 데 사용됩니다.   
+이 경우 /etc/init.d/mysql.server 파일은 MySQL 서버를 자동으로 시작하거나 중지하는 데 사용됩니다. 
+{: .notice--info}
+
+---
+
+**php mysql 연동**   
+
+```s
+sudo apt-get install php-mysql
 ```
-     
+
+php.ini 파일에 아래 2줄의 주석을 풀어줍니다.   
+```s
+extension=mysqli
+extension=pdo_mysql
+```
+
+그리고 Apache 서버 재시작   
+```s
+apachectl restart
+```
+
+**<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**   
+`extension=pdo_mysql`는 PHP Data Objects(PDO) 인터페이스를 사용하여 MySQL 데이터베이스와 상호 작용하는 데 사용됩니다.  
+이 확장(extension)은 일반적으로 MySQL 데이터베이스를 사용하는 PHP 애플리케이션에서 데이터베이스 연결과 쿼리 실행에 사용됩니다.    
+PDO는 여러 종류의 데이터베이스에 대한 일관된 인터페이스를 제공하기 때문에, MySQL 외에도 다른 데이터베이스 시스템과 상호 작용하는 데 사용할 수 있습니다.   
+`    
+반면에 `extension=mysqli`는 MySQL 데이터베이스와 직접 상호 작용하기 위한 MySQLi 확장(extension)입니다.    
+이 확장(extension)은 이전 버전의 MySQL 확장(extension)보다 개선된 기능을 제공하며, 객체 지향 프로그래밍 방식으로 작성되었습니다.    
+`     
+이 확장(extension)은 MySQL 데이터베이스에 대한 더 나은 보안 및 성능을 제공합니다.   
+`    
+따라서, `extension=pdo_mysql`은 일반적인 데이터베이스 인터페이스를 제공하고,    
+`extension=mysqli`는 MySQL 데이터베이스와 직접 상호 작용하기 위한 인터페이스를 제공합니다.    
+어떤 확장(extension)을 사용할지는 애플리케이션의 요구 사항과 개발자의 선호도에 따라 다를 수 있습니다.
+{: .notice--info}
+
+
+PHP 연동이 잘 되는지 확인해 봅시다.
+```php
+<?php
+    echo "MySQL 연결 테스트<br>";
+
+    error_reporting(E_ALL);
+    
+    ini_set("display_errors", 1);
+
+    if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
+        echo 'MySQLi is not installed!';
+    } else {
+        echo 'MySQLi is installed!';
+    }
+
+
+    $conn = mysqli_connect('127.0.0.1', 'root', 'AlshalshSjrnf92@');
+    if (!$conn) {
+        die('Could not connect to MySQL: ' . mysqli_connect_error());
+    }
+    echo 'Connected successfully';
+    mysqli_close($conn);
+?>
+```
+를 이용해서 확인!😎
+
 ---     
+
