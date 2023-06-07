@@ -51,11 +51,6 @@ Starting IP address : 192.168.137.128
 Ending IP address : 192.168.137.254      
 
 
-
-
-
-
-
 Ubuntu 네트워크 정보 확인 결과
 ```s
 IPv4 : *.*.*.*
@@ -63,10 +58,6 @@ Subnet Mask : *.*.*.*
 브로드 캐스트 : *.*.*.255
 네트워크 어댑터 인터페이스 : ens33
 ```
-
-
-
-
 
 ```s
 /etc/netplan
@@ -89,7 +80,7 @@ network:
        - to: default
          via: 192.168.137.2  --게이트웨이
       nameservers:
-        addresses: [192.168.137.2] 
+        addresses: [192.168.137.2]  --게이트웨이를 적자
 ```
 
 네트워크 설정 반영
