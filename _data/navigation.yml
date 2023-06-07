@@ -28,6 +28,8 @@ docs:
         url: /apache-manual-install/
       - title: "리눅스 사용법 및 명령어"
         url: /ubuntu-command/
+      - title: "포트포워딩"
+        url: /linux-port-forwading/
   - title: "DB"
     children:
       - title: "MySQL 수동설치"
