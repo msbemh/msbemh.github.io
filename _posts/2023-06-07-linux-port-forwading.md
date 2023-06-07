@@ -3,14 +3,10 @@ sidebar:
   nav: "docs"
 title : 포트포워딩
 ---
+
 VMWare (Ubuntu) 네트워크 포트포워딩 설정
 
-***
-
-**Ubuntu 설치시 네트워크 설정**    
-네트워크 설정을 Default 설정으로 선택   
-DHCP를 이용해서 동적으로 인터넷 설정   
-apt를 이용하여 필요한 패키지들을 다운 받기 위해서   
+---
 
 
 **<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**
@@ -19,7 +15,7 @@ Ctrl + Alt + F1 ~ F6 : CLI <=> GUI 변경
 
 ---
 
-**고정 IP 할당**
+**네트워크 설정 확인**
 
 ```s
 sudo apt update
@@ -29,29 +25,10 @@ sudo apt update
 sudo apt install net-tools
 ```
 
-네트워크 정보 확인(서버 Linux)
 ```s
-iconfig
+ifconfig
 ```
 
-네트워크 정보 확인 (로컬 Windows cmd)
-```s
-ipconfig
-```
-
-`Edit`>`Virtual Network Editor` 클릭   
-`Chnage Settings` 클릭   
-`VMnet8` 선택   
-`NAT Settings` 클릭    
-Gateway IP 확인 > 뒤로가기    
-`DHCP Settings` 클릭   
-DHCP 범위 확인
-ex) 
-Starting IP address : 192.168.137.128   
-Ending IP address : 192.168.137.254      
-
-
-Ubuntu 네트워크 정보 확인 결과
 ```s
 IPv4 : *.*.*.*
 Subnet Mask : *.*.*.*
@@ -59,6 +36,42 @@ Subnet Mask : *.*.*.*
 네트워크 어댑터 인터페이스 : ens33
 ```
 
+이곳에서 `네트워크 어댑터 인터페이스` 명을 기억합시다.
+
+**<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**
+Windows cmd 에서는 ipconfig로 확인
+{: .notice--info}
+
+`VMWare`에서 `VMnet8` 설정을 확인   
+![](../assets/images/2023-06-07-17-30-46.png)
+
+
+![](../assets/images/2023-06-07-17-33-05.png)
+ 
+![](../assets/images/2023-06-07-17-33-57.png)
+
+게이트웨이 주소 : `192.168.137.2` 확인    
+
+
+![](../assets/images/2023-06-07-17-35-36.png)   
+
+![](../assets/images/2023-06-07-17-36-18.png)   
+
+`192.168.137.128` ~ `192.168.137.254` 범위 중에 내가 고정하고 싶은 IP 1개를 선택해서 설정하자.   
+저는 `192.168.168.128`로 설정하겠습니다.   
+![](../assets/images/2023-06-07-17-36-57.png)
+
+---
+
+**고정IP 설정**
+
+![](../assets/images/2023-06-07-17-54-16.png)
+
+위에서 확인한 `VMnet8(NAT)`로 설정
+![](../assets/images/2023-06-07-17-55-05.png)
+
+
+Ubuntu 네트워크 설정 파일 수정
 ```s
 /etc/netplan
 ```
@@ -94,3 +107,63 @@ ifconfig
 ```
 
 ---
+
+**PUTTY (안해도 됨)**   
+
+```s
+sudo apt-get install ssh
+```
+
+```s
+sudo apt-get install openssh-server
+```
+
+ssh 재시작
+```s
+sudo /etc/init.d/ssh restart
+```
+
+![](../assets/images/2023-06-07-18-36-33.png)
+
+---
+
+**Windows 와 VMWare 포트포워딩**
+
+`9090` 포트 포워딩
+ 
+![](../assets/images/2023-06-07-17-30-46.png)
+
+![](../assets/images/2023-06-07-17-33-57.png)
+
+![](../assets/images/2023-06-07-19-32-38.png)
+
+---
+
+**공유기 포트포워딩**
+
+`9090` 포트 포워딩
+
+![](../assets/images/2023-06-07-19-35-51.png)
+
+---
+
+**방화벽 설정**
+
+
+
+![](../assets/images/2023-06-07-19-36-17.png)
+
+
+---
+
+이제 ubuntu server에 node js server 를 9090으로 open 후에
+
+외부 ip로 접근이 가능한지 확인해 보자
+
+![](../assets/images/2023-06-07-19-37-53.png)
+
+잘 된다 😊 헤헤
+
+
+
+
