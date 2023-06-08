@@ -6,44 +6,40 @@
 #         url : https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
 
 
-docs:
-  - title: PHP
-    children:
-      - title: "PHP Remote 디버그 (xdebug)"
-        url: /php-xdebug/
-      - title: "PHP 수동 설치(linux)"
-        url: /linux-php-install/
-     
-  - title: "Android"
+docs:    
+  - title: "앱"
     children:
       - title: "안드로이드 PlayStore 배포"
         url: /android-release/
-  - title: "OS"
-    children:
-      - title: "wsl"
-        url: /wsl/
-  - title: "리눅스"
+
+  - title: "서버"
     children:
       - title: "아파치 수동 설치"
         url: /apache-manual-install/
-      - title: "리눅스 사용법 및 명령어"
-        url: /ubuntu-command/
-      - title: "VMWare (Ubuntu) 포트포워딩"
-        url: /linux-port-forwading/
-  - title: "DB"
-    children:
+      - title: "PHP 수동 설치(linux)"
+        url: /linux-php-install/
+      - title: "PHP Remote 디버그 (xdebug)"
+        url: /php-xdebug/
       - title: "MySQL 수동설치"
         url: /mysql-manual-install/
-  - title: "Glossary"
+      - title: "VMWare (Ubuntu) 포트포워딩"
+        url: /linux-port-forwading/
+      - title: "WSL 설치"
+        url: /wsl/
+      - title: "HTTPS 적용"
+        url: /https/
+
+  - title: "용어정리"
     children:
-      - title: "용어 정리1"
-        url: /word1/
-  - title: "TEST"
-    children:
-      - title: "quick-start-guide"
-        url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-      - title: "test"
-        url: /test/
+      - title: "리눅스 기본 사용법 및 명령어"
+        url: /ubuntu-command/
+      
+  # - title: "TEST"
+  #   children:
+  #     - title: "quick-start-guide"
+  #       url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  #     - title: "test"
+  #       url: /test/
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"

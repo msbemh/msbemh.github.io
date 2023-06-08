@@ -1,7 +1,7 @@
 ---
 sidebar:
   nav: "docs"
-title : 포트포워딩
+title : VMWare (Ubuntu) 포트포워딩
 ---
 
 VMWare (Ubuntu) 네트워크 포트포워딩 설정
