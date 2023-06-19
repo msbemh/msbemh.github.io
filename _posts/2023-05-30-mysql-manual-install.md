@@ -333,7 +333,7 @@ PHP 연동이 잘 되는지 확인해 봅시다.
     }
 
 
-    $conn = mysqli_connect('127.0.0.1', 'root', 'AlshalshSjrnf92@');
+    $conn = mysqli_connect('127.0.0.1', 'root', '[비밀번호]');
     if (!$conn) {
         die('Could not connect to MySQL: ' . mysqli_connect_error());
     }
