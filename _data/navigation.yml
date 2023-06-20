@@ -33,12 +33,18 @@ docs:
     children:
       - title: "WebRTC란"
         url: /webrtc-def/
-      - title: "시그널링 서버"
+      - title: "WebRTC 서버 구조도 종류"
+        url: /webrtc-server-structure-type/
+      - title: "시그널링 서버 (Mesh 구성)"
         url: /signaling-server/
-      - title: "STUN-TURN 서버 생성"
+      - title: "STUN-TURN 서버 생성 (Mesh 구성)"
         url: /coturn/
-      - title: "Client Application"
+      - title: "P2P 구현 예제 (Mesh 구성)"
         url: /webrtc-client-app/
+      - title: "ZEP 같은 앱 구현 (Mesh 구성)"
+        url: /webrtc-zep/
+      - title: "SFU 구성"
+        url: /webrtc-sfu/
 
   - title: "용어정리"
     children:
