@@ -28,6 +28,20 @@ docs:
         url: /wsl/
       - title: "HTTPS 적용"
         url: /https/
+      - title: "쿠키 및 세션"
+        url: /cookie-session/
+
+  - title: "데이터베이스 MYSQL"
+    children:
+      - title: "InnoDB Engine"
+        url: /mysql-engine/
+
+  - title: "자바스크립트 프레임워크"
+    children:
+      - title: "웹팩(React)"
+        url: /webpack/
+      - title: "Vue"
+        url: /vue/
 
   - title: "화상채팅"
     children:
@@ -45,6 +59,18 @@ docs:
         url: /webrtc-zep/
       - title: "SFU 구성"
         url: /webrtc-sfu/
+
+  - title: "인공지능"
+    children:
+      - title: "파이썬"
+        url: /python/
+      - title: "아나콘다"
+        url: /anaconda/
+
+  - title: "CSS"
+    children:
+      - title: "CSS 기초"
+        url: /css-basic/
 
   - title: "용어정리"
     children:

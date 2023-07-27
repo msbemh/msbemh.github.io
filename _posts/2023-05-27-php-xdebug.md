@@ -93,10 +93,10 @@ configure 라는 스크립트를 생성시켜 줍니다.
     
 `    
 
-+ phpsize 실행  
++ phpize 실행  
 
 ```
-{% raw %}phpsize{% endraw %}
+{% raw %}phpize{% endraw %}
 ```
 
 **<i class="fa fa-info-circle" aria-hidden="true"></i> 정보**   
